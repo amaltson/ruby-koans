@@ -4,6 +4,13 @@ require File.expand_path(File.dirname(__FILE__) + '/edgecase')
 require 'triangle.rb'
 
 class AboutTriangleProject < EdgeCase::Koan
+
+  def triangle(side1, side2, side3)
+    return :equilateral if side1 == side2 and side2 == side3
+    return :isosceles if side1 == side2 or side1 == side3 or side2 == side3
+    return :scalene if side1 != side2 and side2 != side3 and side1 != side3
+  end
+
   def test_equilateral_triangles_have_equal_sides
     assert_equal :equilateral, triangle(2, 2, 2)
     assert_equal :equilateral, triangle(10, 10, 10)
