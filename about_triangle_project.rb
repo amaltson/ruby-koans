@@ -5,10 +5,18 @@ require 'triangle.rb'
 
 class AboutTriangleProject < EdgeCase::Koan
 
-  def triangle(side1, side2, side3)
+  def triangle_mine(side1, side2, side3)
     return :equilateral if side1 == side2 and side2 == side3
     return :isosceles if side1 == side2 or side1 == side3 or side2 == side3
     return :scalene if side1 != side2 and side2 != side3 and side1 != side3
+  end
+
+  def triangle(side1, side2, side3)
+    case [side1, side2, side3].uniq.size
+    when 1 then :equilateral
+    when 2 then :isosceles
+    else :scalene
+    end
   end
 
   def test_equilateral_triangles_have_equal_sides

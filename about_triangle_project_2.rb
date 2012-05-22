@@ -12,6 +12,24 @@ class AboutTriangleProject2 < EdgeCase::Koan
     assert_raise(TriangleError) do triangle(1, 1, 3) end
     assert_raise(TriangleError) do triangle(2, 4, 2) end
     # HINT: for tips, see http://stackoverflow.com/questions/3834203/ruby-koan-151-raising-exceptions
- end
+  end
+end
+
+def triangle(side1, side2, side3)
+  if side1 + side2 > side3 or side1 + side3 > side2
+    raise TriangleError, "Not a triangle"
+  elsif side1 <= 0 or side2 <= 0 or side3 <= 0
+    raise TriangleError, "Can't have zero or less for side"
+  #else
+    #raise TraingleError, "Not a triangle"
+  elsif side1 == side2 and side2 == side3
+    :equilateral
+  elsif side1 == side2 or side1 == side3 or side2 == side3
+    :isosceles
+  elsif side1 != side2 and side2 != side3 and side1 != side3
+    :scalene end
+end
+
+class TriangleError < StandardError
 end
 
